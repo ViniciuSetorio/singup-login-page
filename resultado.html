@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Status do Cadastro - AMU Style</title>
+    <style>
+      body {
+        background-color: #13131a;
+        color: white;
+        font-family: "Inter", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .card {
+        background-color: #1c1c24;
+        padding: 40px;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        max-width: 400px;
+      }
+      h1 {
+        color: #7e57c2;
+      }
+      .proibido {
+        color: #ff6b6b;
+      }
+      button {
+        background-color: #6d5dfc;
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card" id="conteudo"></div>
+
+    <script>
+      const dados = JSON.parse(localStorage.getItem("dadosCadastro"));
+
+      if (!dados) {
+        window.location.href = "index.html"; // Volta se não houver dados
+      } else {
+        const container = document.getElementById("conteudo");
+
+        if (dados.idade < 18) {
+          // Caso Menor de Idade
+          container.innerHTML = `
+                <h1 class="proibido">Acesso Negado</h1>
+                <p>Olá, <strong>${dados.apelido}</strong>!</p>
+                <p>Identificamos que você tem apenas <strong>${dados.idade} anos</strong>.</p>
+                <p style="background: rgba(255,107,107,0.1); padding: 10px; border-radius: 5px;">
+                    Sinto muito, mas o acesso é proibido para menores de idade.
+                </p>
+                <button onclick="voltar()">Voltar</button>
+            `;
+        } else {
+          // Caso Maior de Idade
+          container.innerHTML = `
+                <h1>Bem-vindo!</h1>
+                <p>Olá, <strong>${dados.apelido}</strong>.</p>
+                <p>Seu cadastro foi realizado com sucesso.</p>
+                <button onclick="voltar()">Sair</button>
+            `;
+        }
+      }
+
+      function voltar() {
+        localStorage.removeItem("dadosCadastro");
+        window.location.href = "index.html";
+      }
+    </script>
+  </body>
+</html>

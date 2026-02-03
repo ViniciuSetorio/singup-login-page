@@ -1,0 +1,399 @@
+/* Reset e Configurações Básicas */
+* {
+  box-sizing: border-box;
+  outline: none;
+}
+
+body {
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+  background-color: #13131a;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* Layout Principal: Card Dividido */
+.main-wrapper {
+  display: flex;
+  width: 95%;
+  width: 95vw;
+  height: 95vh;
+  background-color: #1c1c24;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  margin: 20px;
+}
+
+/* Lado Esquerdo: Imagem e Branding */
+.left-panel {
+  flex: 1;
+  background-image: url("https://images.unsplash.com/photo-1765779038142-054a9f8c2268?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 40px;
+  color: white;
+}
+
+/* Filtro roxo sobre a imagem */
+.left-panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(76, 29, 149, 0.4),
+    rgba(17, 17, 27, 0.8)
+  );
+  z-index: 1;
+}
+
+.brand-logo,
+.brand-quote {
+  position: relative;
+  z-index: 2;
+}
+
+.brand-logo {
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.brand-quote h2 {
+  font-size: 32px;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+/* Lado Direito: Formulário */
+.right-panel {
+  flex: 1.2;
+  padding: 50px;
+  overflow-y: auto; /* Scroll apenas nesta área se o form for longo */
+  background-color: #23232f;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Scrollbar estilizada */
+.right-panel::-webkit-scrollbar {
+  width: 8px;
+}
+.right-panel::-webkit-scrollbar-track {
+  background: #1c1c24;
+}
+.right-panel::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 4px;
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+  color: #fff;
+  font-weight: 600;
+}
+
+.subtitle {
+  color: #a0a0a0;
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+
+.subtitle a {
+  color: #7e57c2;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Estilização dos Fieldsets */
+fieldset {
+  border: none;
+  padding: 0;
+  margin: 0 0 30px 0;
+  border-top: 1.5px solid #333;
+  padding-top: 20px;
+}
+
+legend {
+  font-size: 14px;
+  color: #7e57c2; 
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+}
+
+/* Layout do Formulário */
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.form-group {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Labels */
+label {
+  font-size: 13px;
+  color: #b0b0b0;
+  margin-bottom: 8px;
+}
+
+.required::after {
+  content: "*";
+  color: #ff6b6b;
+  margin-left: 4px;
+}
+
+/* Inputs Estilo Dark */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+  background-color: #2d2d39;
+  border: 1px solid #3e3e4a;
+  border-radius: 8px;
+  padding: 14px 15px;
+  color: #fff;
+  font-size: 14px;
+  width: 100%;
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s;
+}
+
+input::placeholder {
+  color: #666;
+}
+
+input:focus,
+select:focus {
+  border-color: #7e57c2;
+  box-shadow: 0 0 0 3px rgba(126, 87, 194, 0.2);
+}
+
+/* Select customizado */
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%237e57c2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 15px top 50%;
+  background-size: 10px auto;
+}
+
+/* Estados de Erro */
+input.error,
+select.error {
+  border-color: #ff6b6b;
+  background-color: rgba(255, 107, 107, 0.05);
+}
+
+.error-message {
+  color: #ff6b6b;
+  font-size: 11px;
+  margin-top: 5px;
+  min-height: 14px;
+}
+
+/* Wrapper de Senha */
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #a0a0a0;
+  font-size: 16px;
+}
+
+.toggle-password:hover {
+  color: #fff;
+}
+
+/* Lista de Requisitos de Senha */
+.senha-requisitos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+  background: #2d2d39;
+  padding: 12px;
+  border-radius: 8px;
+  margin-top: 5px;
+  list-style: none;
+  font-size: 12px;
+}
+
+.senha-requisitos li {
+  margin-bottom: 4px;
+  color: #666;
+  display: flex;
+  align-items: center;
+}
+
+/* Mudança visual na validação */
+.senha-requisitos li::before {
+  content: "•";
+  margin-right: 5px;
+  font-size: 14px;
+}
+
+.senha-requisitos li {
+  color: #00b050;
+}
+.senha-requisitos li.invalido {
+  color: #666;
+}
+
+/* CEP Link */
+.cep-link {
+  color: #7e57c2;
+  font-size: 12px;
+  text-decoration: none;
+  margin-top: 8px;
+  display: inline-block;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.cep-link:hover {
+  color: #9f82d8;
+}
+
+.cep-resultados {
+  background: #2d2d39;
+  border: 1px solid #3e3e4a;
+  border-radius: 8px;
+  margin-top: 10px;
+  max-height: 200px;
+  overflow-y: auto;
+  display: none;
+}
+
+.cep-item {
+  margin: 10px 6px;
+  font-size: 12px;
+  border-bottom: 1px solid #3e3e4a;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.cep-item:hover {
+  background: #3e3e4a;
+}
+.cep-item strong {
+  color: #7e57c2;
+  display: block;
+  margin-bottom: 2px;
+}
+
+/* Scrollbar da lista CEP */
+.cep-resultados::-webkit-scrollbar {
+  width: 6px;
+}
+.cep-resultados::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 3px;
+}
+
+/* Botão Enviar */
+.btn-enviar {
+  background-color: #6d5dfc;
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 20px;
+  transition: background 0.3s;
+}
+
+.btn-enviar:hover {
+  background-color: #5b4cc4;
+}
+
+/* Rodapé */
+footer {
+  margin-top: 30px;
+  border-top: 1px solid #333;
+  padding-top: 20px;
+  font-size: 12px;
+  color: #666;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+footer a {
+  color: #7e57c2;
+  font-weight: bolder;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .main-wrapper {
+    width: 95vw;
+    height: 95vh;
+  }
+}
+
+@media (max-width: 900px) {
+  body {
+    overflow: auto;
+  }
+  .left-panel {
+    display: none;
+  }
+  .main-wrapper {
+    height: auto;
+    min-height: 95vh;
+    width: 95vw;
+    flex-direction: column;
+    margin: 20px;
+  }
+  .right-panel {
+    padding: 30px;
+  }
+}
