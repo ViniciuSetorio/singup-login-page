@@ -1,7 +1,5 @@
-// Ano Atual no Rodapé
 document.getElementById("ano-atual").textContent = new Date().getFullYear();
 
-// Utilitário de Erro
 function setErro(idInput, idErro, mensagem) {
   const input = document.getElementById(idInput);
   const erro = document.getElementById(idErro);
@@ -16,8 +14,6 @@ function setErro(idInput, idErro, mensagem) {
 }
 
 // --- MÁSCARAS E EVENTOS DE INPUT ---
-
-// 1. CPF
 const cpfInput = document.getElementById("cpf");
 cpfInput.addEventListener("input", function () {
   let v = this.value.replace(/\D/g, "");
@@ -32,7 +28,6 @@ cpfInput.addEventListener("keypress", function (e) {
   if (!/[0-9]/.test(String.fromCharCode(e.which))) e.preventDefault();
 });
 
-// 2. CEP
 const cepInput = document.getElementById("cep");
 cepInput.addEventListener("input", function () {
   let v = this.value.replace(/\D/g, "");
@@ -44,7 +39,6 @@ cepInput.addEventListener("keypress", function (e) {
   if (!/[0-9]/.test(String.fromCharCode(e.which))) e.preventDefault();
 });
 
-// 3. Data de Nascimento
 const dataInput = document.getElementById("dataNascimento");
 dataInput.addEventListener("input", function () {
   let v = this.value.replace(/\D/g, "");
@@ -57,7 +51,6 @@ dataInput.addEventListener("keypress", function (e) {
   if (!/[0-9]/.test(String.fromCharCode(e.which))) e.preventDefault();
 });
 
-// 4. Telefone
 const telInput = document.getElementById("telefone");
 telInput.addEventListener("input", function () {
   let v = this.value.replace(/\D/g, "");
@@ -103,7 +96,6 @@ function validarDataNascimento(dataStr) {
   const data = new Date(ano, mes, dia);
   const hoje = new Date();
 
-  // Data inválida (ex: 30/02) ou Data futura
   if (
     data.getDate() !== dia ||
     data.getMonth() !== mes ||
@@ -200,7 +192,6 @@ linkCEP.addEventListener("click", async function () {
   }
 });
 
-// --- SENHA ---
 const senhaInput = document.getElementById("senha");
 const requisitos = {
   tamanho: document.getElementById("req-tamanho"),
@@ -244,12 +235,10 @@ document
   .getElementById("pagina-formulario")
   .addEventListener("submit", function (e) {
     e.preventDefault();
-    console.log("Submit interceptado com sucesso");
 
     let valido = true;
-    let primeiroErro = null; // Para focar no primeiro campo errado
+    let primeiroErro = null;
 
-    // Campos Obrigatórios
     const campos = [
       "nome",
       "cpf",
@@ -270,7 +259,6 @@ document
 
     campos.forEach((id) => {
       const el = document.getElementById(id);
-      // Verifica se o valor está vazio
       if (!el.value.trim()) {
         setErro(id, "erro-" + id, "Campo obrigatório.");
         valido = false;
@@ -280,7 +268,6 @@ document
       }
     });
 
-    // Validações Específicas (Só valida se o campo tiver valor para evitar dupla mensagem)
     const cpfEl = document.getElementById("cpf");
     if (cpfEl.value && !validarCPF(cpfEl.value)) {
       setErro("cpf", "erro-cpf", "CPF inválido.");
@@ -306,6 +293,17 @@ document
       if (!primeiroErro) primeiroErro = cepEl;
     }
 
+    const emailEl = document.getElementById("email");
+    if (emailEl.value && !validarEmail(emailEl.value)) {
+      setErro(
+        "email",
+        "erro-email",
+        "E-mail inválido.",
+      );
+      valido = false;
+      if (!primeiroErro) primeiroErro = emailEl;
+    }
+
     const senhaEl = document.getElementById("senha");
     const confSenhaEl = document.getElementById("confirmarSenha");
     if (senhaEl.value !== confSenhaEl.value) {
@@ -314,7 +312,6 @@ document
       if (!primeiroErro) primeiroErro = confSenhaEl;
     }
 
-    // Valida Requisitos da Senha antes de enviar
     if (senhaEl.value && !atualizarRequisitosSenha(senhaEl.value)) {
       setErro("senha", "erro-senha", "A senha não atende aos requisitos.");
       valido = false;
@@ -331,7 +328,6 @@ document
       localStorage.setItem("dadosCadastro", JSON.stringify(dadosUsuario));
       window.location.href = "resultado.html";
     } else {
-      // UX: Foca no primeiro campo com erro
       if (primeiroErro) primeiroErro.focus();
     }
   });
